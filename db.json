@@ -1,0 +1,46 @@
+{
+    "users": [
+      {
+        "id": 1,
+        "name": "Agnieszka",
+        "lastName": "Stępnik",
+        "email": "a.stepnik@o2.pl",
+        "password": "qwerty1"
+      },
+      {
+        "id": 2,
+        "name": "Olga",
+        "lastName": "Biarda",
+        "email": "o.biarda@o2.pl",
+        "password": "zxcv1"
+      },
+      {
+        "id": 3,
+        "name": "Andrzej",
+        "lastName": "Kamiński",
+        "email": "kaminskik@gmail.com",
+        "password": "asdfg1"
+      },
+      {
+        "id": 4,
+        "name": "Piotr",
+        "lastName": "Jaworski",
+        "email": "jaworski.p@gmail.com",
+        "password": "qazwsx"
+      },
+      {
+        "id": 5,
+        "name": "Marta",
+        "lastName": "Brzezicka",
+        "email": "brzezi@o2.pl",
+        "password": "poiuy12"
+      },
+      {
+        "id": 6,
+        "name": "Agnieszka",
+        "lastName": "Iks",
+        "email": "iks@gmail.com",
+        "password": "qscnko09"
+      }
+    ]
+  }

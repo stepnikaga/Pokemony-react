@@ -4,7 +4,14 @@ import React, { useState, useEffect } from "react"
 import styled from 'styled-components';
 
 import Card from '../components/Card'
+import Search from '../components/Search'
 
+const Container = styled.div`
+    background-color: #80ced6;
+ 
+ 
+    /* padding-top: 0%; */
+`
 const PageButton = styled.button `
     line-height: 40px;
     margin: 100px 100px 20px 80px; 
@@ -18,7 +25,6 @@ const PageButton = styled.button `
     cursor: pointer;
     padding: 0;
     color: whitesmoke;
- 
     text-decoration: none;
     transition: 0.5s;
     &:hover {
@@ -29,28 +35,47 @@ const PageButton = styled.button `
         border-radius: 1px;
     }
 `
-
-const MainContainer = styled.div`
+const ContainerButton = styled.div`
+    display: flex;
+    margin-top: 0%;
+    margin-bottom: 5%;
     width: 100%;
     height: 100%;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+    justify-content: center;
+`
 
+const MainContainer = styled.div`
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-left: 5px;
 `
 const Content = styled.div`
     display: flex;
     flex-wrap: wrap;
     align-items: space-between;
-    justify-content: center;
-    margin: 0 auto;
-    max-width: 1200px;
-    
+    justify-content: space-around;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    margin-left: 20px;
+    margin-right: 20px;
+    /* max-width: 450px;  */
+    max-width: 15vw;
+    cursor: pointer;
+    &:hover {
+        box-shadow: 0 3px 6px 8px rgba(0,0,0,0.6);
+        text-decoration: none;
+        background-color: #87bdd8;
+        color: #282C34;
+        border-radius: 0.5px;
+    }
 `
 const NEXT = 'NASTĘPNA'
 const PREV = 'POPRZEDNIA'
 
-function PokemonList({ setPokem }){
+function PokemonList(){
     const [pokemon, setPokemon]= useState()
     const [limitValue, setLimitValue] = useState(15)
     const [pageValue, setPageValue] = useState(0)
@@ -79,7 +104,7 @@ function PokemonList({ setPokem }){
         setLimitValue(15)
     }
     const nextPage = () => {
-        if (pageValue === 10) {
+        if (pageValue === 11) {
             alert("Jesteś na ostatniej stronie")
             return
         }
@@ -87,11 +112,13 @@ function PokemonList({ setPokem }){
         setLimitValue(15)
     }
     return(
-        <div>
+        <Container>
+            <ContainerButton>
+                <PageButton onClick={prevPage}>{PREV}</PageButton><PageButton onClick={nextPage}>{NEXT}</PageButton>
+            </ContainerButton>
             <MainContainer>
-                <h3><PageButton onClick={prevPage}>{PREV}</PageButton><PageButton onClick={nextPage}>{NEXT}</PageButton></h3>
                 {pokemon?.results?.filter((_, index) => index < 15).map(({url}, index) => (
-                    <Content>
+                    <Content >
                         <Card 
                             url={url} 
                             key={index}
@@ -99,7 +126,7 @@ function PokemonList({ setPokem }){
                     </Content>
                 ))}
             </MainContainer>    
-        </div>
+        </Container>
     )  
 }
 export default PokemonList

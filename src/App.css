@@ -1,7 +1,10 @@
 .App {
   display: flex;
   text-align: center;
-  background-color:   #d5e1df;
+  background-color: #80ced6;
+  /* background-image: url(${tlo}); */
+  width: 100%;
+  height: 100%;
 }
 
 
@@ -13,4 +16,5 @@
 
 .App-link {
   color: #61dafb;
+  text-decoration: none;
 }

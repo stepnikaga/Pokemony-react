@@ -16,56 +16,56 @@ const CardContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 0 auto;
+    max-width: 50vw;
+    max-height: 60px;
     justify-content: center;
-    padding: 1 rem 0;
-    margin: 0.3rem;
     border: 1px solid;
-    border-radius: 1.5rem;
-    min-width: 300px;
+    border-radius: 1.0rem;
     box-shadow: 0 4px 8px 10px rgba(0, 0, 0, 0.2);
     background-color: #fefbd8;
     transition: 0.5s;
-    min-height: 400px;
 `
-
 const Image = styled.img`
-    margin-top: 40px;
     max-width: 40%;
 `
 const Info = styled.div`
     margin-top: 20px;
     font-family: serif;
-    max-height: 80%;
+    max-height: 40%;
     align-items: center;
 `
 const Name = styled.div`
     font-family: "Times New Roman", Times, serif;
-    font-size: 30px;
+    font-size: 20px;
     font-weight: bolder;
     color: red;
 `
 const Abilities = styled.div`
     display: flex;
     justify-content: space-between;
-    margin-top: 23px;
+    /* min-height: 10vw; */
+
 `
 const Forms = styled.div`
     display: flex;
     flex-direction: column;
-    margin-top: 30px;
-    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     margin-left: 20px;
 ` 
 const Data = styled.h5`
-    margin-top: 1px;
+    margin-top: 0vw;
+    font-size: 8px;
 `
 const Title = styled.h4`
-    font-size: 20px;
+    font-size: 13px;
+    margin-top: 0vw;
+    color: blueviolet;
 `
 const Card = ({ url }) => {
         const history = useHistory()
         const [pokemon, setPokemon] = useState([])
-        const [addFavorite, setAddFavorite] = useState(true);
         const hasAbility = Array.isArray(pokemon?.abilities)
         const { id } = useParams()
         console.log('id', id)

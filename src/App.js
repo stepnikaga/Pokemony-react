@@ -16,7 +16,7 @@ import PokemonDetails from './components/PokemonDetails';
 function App() {
   const [pokem, setPokem] = useState(null)
   const [search, setSearch] = useState("")
-  const [value, setValue] = useState(2)
+  // const [value, setValue] = useState(2)
   // const history = useHistory()
   console.log('poki',pokem)
 
@@ -28,13 +28,20 @@ function App() {
     <div className="App">
       <Router>
         <Navigation />
- 
         <Switch>
 
         <Route path="/" exact>
         <div>
           <Search handleClick={(value) => setSearch(value)}/>      
-          <PokemonList setPokem={setPokem} />
+          <PokemonList 
+            setPokem={setPokem} 
+
+          />
+          {/* {pokemon2?.results?.map((item) => (
+          <Route path={`/${item.id}`}>
+            <PokemonDetails url={item.url} />
+          </Route>
+        ))} */}
         </div>
 
         </Route>

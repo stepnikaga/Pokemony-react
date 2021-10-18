@@ -31,7 +31,7 @@ const Wrapper = styled.div`
   border: 1px solid;
   border-Radius: 1.5rem;
   max-width: 300px;
-  -height: 400px;
+  /* -height: 400px; */
   text-Align: center;
   box-Shadow: 0 4px 8px 10px rgba(0, 0, 0, 0.2);
   background-color: #fefbd8;
@@ -40,8 +40,9 @@ const Title = styled.h4`
     font-size: 20px;
 `
 const Icon = styled.div`
-    color: red;
+    color: ${({ pokemonFavourite }) => (pokemonFavourite ? "red" : "gray")};
     margin-bottom: 20px;
+    
 `
 const Forms = styled.div`
     display: flex;
@@ -64,7 +65,8 @@ const Name = styled.div`
 const Abilities = styled.div`
     display: flex;
     justify-content: space-between;
-    margin-top: 23px;
+    /* margin-top: 23px;
+    height: 10px; */
 `
 
 const Image = styled.img`
@@ -83,7 +85,7 @@ const Data = styled.h5`
     margin-top: 1px;
 `
 
-const PokemonDetails = () => {
+const PokemonDetails = ({url}) => {
         const history = useHistory()
         const [pokemon, setPokemon] = useState([])
         const [pokemonFavourite, setPokemonFavourite] = useState(null)
@@ -93,11 +95,26 @@ const PokemonDetails = () => {
         const BASE_URL = `https://pokeapi.co/api/v2/pokemon`
         console.log('id2', id)
 
+    useEffect(() => {
+        axios.get(`${url}`).then((response) => {
+            setPokemonFavourite(response.data);
+    })
+    },[])
+
     useEffect ( async () => {
         const response = await axios.get(`${BASE_URL}/${id}`)
         setPokemon(response.data)
     },[])
     console.log('pokemony', pokemon)
+
+    useEffect(() =>{
+        axios.get(`http://localhost:3000/favourites`)
+            .then(response => {
+                setPokemonFavourite(response.data)
+            })
+    },[])
+    console.log('pokemonFavorite', pokemonFavourite)
+
 
     useEffect(() => {
         const pokemonFavouriteFlag = pokemonFavourite?.includes(pokemon?.id)
@@ -111,7 +128,7 @@ const PokemonDetails = () => {
 
     const handleAddFavourite = () => {
         if (flag === false) {
-            axios.post(('http://localhost:3000/favorites'), {
+            axios.post((`http://localhost:3000/favourites`), {
                 sprite: pokemon.sprites.other.dream_world.front_default,
                 species: pokemon.name,
                 height: pokemon.height,
@@ -122,9 +139,32 @@ const PokemonDetails = () => {
             })
             setFlag(true)
         } else if (flag === true) {
-            axios.delete(`http://localhost:3000/favorites/${pokemon.id}`)
+            axios.delete(`http://localhost:3000/favourites/${pokemon.id}`)
                 .then(response => console.log(response.data))
             setFlag(false)            
+        }
+    }
+
+    // useEffect(() => {
+    //     pokemonFavourite();
+    //     axios.get(`http://localhost:3000/favourite`).then((result) =>{
+    //         handleAddArena(result.data.length >=2 ? false : true)
+    //     })
+    // },[])
+
+    const handleAddArena = () => {
+        if(handleAddArena) {
+            axios.post(`http://localhost:3000/arena`, {
+                sprite: pokemon.sprites.other.dream_world.front_default,
+                species: pokemon.name,
+                height: pokemon.height,
+                weight: pokemon.weight,
+                baseExperience: pokemon.base_experience,
+                ability: pokemon?.abilities.map(({ ability: { name } }) => ({name})),
+                id: pokemon.id
+            })
+        } else {
+            alert('Dodałeś maksymalną ilość pokemonów')
         }
     }
 

@@ -14,7 +14,7 @@ const Container = styled.div`
   background-color: #80ced6;
 `
 
-const Search = ({handleClick}) => {
+const Search = ({ handleClick }) => {
   return (
     <Container>
       <Paper

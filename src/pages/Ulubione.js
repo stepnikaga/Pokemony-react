@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react"
 import styled from 'styled-components';
 
 import Card from '../components/Card'
+import PokemonList from "./PokemonList";
 
 const PageButton = styled.button `
     line-height: 40px;
@@ -32,13 +33,13 @@ const PageButton = styled.button `
 const ContainerButton = styled.div`
     display: flex;
     width: 100%;
-    height: 100%;
-    justify-content: space-around;
+    max-height: 30%;
+    justify-content: center;
 `
 const MainContainer = styled.div`
     display: flex;
     width: 100%;
-    height: 100%;
+    max-height: 50%;
     justify-content: space-around;
     flex-wrap: wrap;
     margin-left: 5px;
@@ -62,7 +63,7 @@ const Content = styled.div`
 const NEXT = 'NASTĘPNA'
 const PREV = 'POPRZEDNIA'
 
-function Ulubione(){
+function Ulubione({pokemonFavourite}){
     const [pokemon, setPokemon]= useState()
     const [limitValue, setLimitValue] = useState(15)
     const [pageValue, setPageValue] = useState(0)
@@ -104,15 +105,15 @@ function Ulubione(){
             <h3><PageButton onClick={prevPage}>{PREV}</PageButton><PageButton onClick={nextPage}>{NEXT}</PageButton></h3>
             </ContainerButton>
             <MainContainer>
-                
-                {pokemon?.results?.filter((_, index) => index < 15).map(({url}, index) => (
+                <PokemonList />
+                {/* {pokemon?.results?.filter((_, index) => index < 15).map(({url}, index) => (
                     <Content>
                         <Card 
                             url={url} 
                             key={index}
                         />
                     </Content>
-                ))}
+                ))} */}
             </MainContainer>    
         </div>
     )  

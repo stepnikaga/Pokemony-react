@@ -6,9 +6,9 @@ import {Link} from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
 
-  // root: {
-  //   flexGrow: 1,
-  // },
+  root: {
+    flexGrow: 1,
+  },
 
   menuButton: {
     marginRight: theme.spacing(2),
@@ -50,8 +50,8 @@ function Navigation() {
           <Typography variant="h6" className={classes.title}>
             Pokedex
           </Typography>
-          <Link to="/ulubione-pokemony"><Button className={classes.button}>Ulubione</Button></Link>
-          <Link to="/arena-pokemonow"><Button className={classes.button}>Arena</Button></Link>
+          <Link to="/Ulubione"><Button className={classes.button}>Ulubione</Button></Link>
+          <Link to="/Arena"><Button className={classes.button}>Arena</Button></Link>
         </Toolbar>
       </AppBar>
     </div>

@@ -10,22 +10,6 @@
       "ability": ""
     },
     {
-      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/3.svg",
-      "species": "venusaur",
-      "height": 20,
-      "weight": 1000,
-      "baseExperience": 236,
-      "ability": [
-        {
-          "name": "overgrow"
-        },
-        {
-          "name": "chlorophyll"
-        }
-      ],
-      "id": 3
-    },
-    {
       "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/8.svg",
       "species": "wartortle",
       "height": 10,
@@ -107,6 +91,25 @@
         }
       ],
       "id": 4
+    },
+    {
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/18.svg",
+      "species": "pidgeot",
+      "height": 15,
+      "weight": 395,
+      "baseExperience": 216,
+      "ability": [
+        {
+          "name": "keen-eye"
+        },
+        {
+          "name": "tangled-feet"
+        },
+        {
+          "name": "big-pecks"
+        }
+      ],
+      "id": 18
     }
   ],
   "arena": []

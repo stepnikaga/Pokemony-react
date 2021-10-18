@@ -46,8 +46,8 @@ const ContainerButton = styled.div`
 
 const MainContainer = styled.div`
     display: flex;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vw;
     justify-content: space-around;
     flex-wrap: wrap;
     margin-left: 5px;
@@ -55,14 +55,10 @@ const MainContainer = styled.div`
 const Content = styled.div`
     display: flex;
     flex-wrap: wrap;
-    align-items: space-between;
     justify-content: space-around;
-    margin-top: 40px;
-    margin-bottom: 40px;
-    margin-left: 20px;
-    margin-right: 20px;
-    /* max-width: 450px;  */
-    max-width: 15vw;
+    align-items: space-between;
+    margin: 40px 40px 20px 20px;
+    max-width: 16vw;
     cursor: pointer;
     &:hover {
         box-shadow: 0 3px 6px 8px rgba(0,0,0,0.6);
@@ -85,7 +81,6 @@ function PokemonList(){
         axios.get(`${BASE_URL}?limit=${limitValue}&offset=${pageValue}`)
             .then(response => {
                 setPokemon(response.data)
-                // setPokem(response.data.results)
                 console.log('dane', response.data)
             })
 
@@ -100,16 +95,18 @@ function PokemonList(){
             alert('Jesteś na pierwszej stronie :-)')
             return
         }
-        setPageValue(pageValue - 16)
+        setPageValue(pageValue - 15)
         setLimitValue(15)
     }
     const nextPage = () => {
-        if (pageValue === 11) {
+        if (pageValue === 150) {
             alert("Jesteś na ostatniej stronie")
             return
+        } else if (pageValue === 135) {
+            setLimitValue(1)
         }
-        setPageValue(pageValue + limitValue)
-        setLimitValue(15)
+        setPageValue(pageValue + 15);
+      
     }
     return(
         <Container>

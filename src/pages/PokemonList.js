@@ -6,14 +6,13 @@ import styled from 'styled-components';
 import Card from '../components/Card'
 import Search from '../components/Search'
 
+
 const Container = styled.div`
-    background-color: #80ced6;
+    /* background-color: #80ced6; */
  
- 
-    /* padding-top: 0%; */
+    padding-top: 0%;
 `
 const PageButton = styled.button `
-    line-height: 40px;
     margin: 100px 100px 20px 80px; 
     display: inline-block;
     height: 50px;
@@ -61,11 +60,11 @@ const Content = styled.div`
     max-width: 16vw;
     cursor: pointer;
     &:hover {
-        box-shadow: 0 3px 6px 8px rgba(0,0,0,0.6);
+        box-shadow: 0 3px 3px 5px rgba(0,0,0,0.6);
         text-decoration: none;
-        background-color: #87bdd8;
-        color: #282C34;
-        border-radius: 0.5px;
+        /* background-color: #87bdd8; */
+        /* color: #282C34; */
+        border-radius: 0.3px;
     }
 `
 const NEXT = 'NASTĘPNA'

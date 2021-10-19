@@ -32,13 +32,13 @@ const Wrapper = styled.div`
   border: 1px solid;
   border-Radius: 1.5rem;
   max-width: 300px;
-  /* -height: 400px; */
   text-Align: center;
   box-Shadow: 0 4px 8px 10px rgba(0, 0, 0, 0.2);
   background-color: #fefbd8;
 `
 const Title = styled.h4`
-    font-size: 20px;
+    font-size: 15px;
+    color: blueviolet;
 `
 const Icon = styled.div`
     color: ${({ pokemonFavourite }) => (pokemonFavourite ? "red" : "gray")};
@@ -71,24 +71,24 @@ const Name = styled.div`
 const Abilities = styled.div`
     display: flex;
     justify-content: space-between;
-    /* margin-top: 23px;
-    height: 10px; */
+    /* margin-top: 0%; */
 `
 
 const Image = styled.img`
     margin-top: 5px;
     margin-bottom: 10px;
-    width: 250px;
+    width: 350px;
     padding: 10px 20px;
 `
 const Info = styled.div`
-    margin-top: 20px;
+    margin-top: 10px;
     font-family: serif;
     max-height: 80%;
     align-items: center;
 `
 const Data = styled.h5`
     margin-top: 1px;
+    font-size: 10px;
 `
 
 const PokemonDetails = ({url}) => {

@@ -16,18 +16,18 @@ const CardContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0 auto;
-    max-width: 50vw;
-    max-height: 60px;
+    /* margin: 0 auto; */
+    max-width: 70vw;
+    max-height: 400px;
     justify-content: center;
     border: 1px solid;
-    border-radius: 1.0rem;
+    /* border-radius: 1.0rem; */
     box-shadow: 0 4px 8px 10px rgba(0, 0, 0, 0.2);
     background-color: #fefbd8;
     transition: 0.5s;
 `
 const Image = styled.img`
-    max-width: 40%;
+    max-width: 60%;
 `
 const Info = styled.div`
     margin-top: 20px;
@@ -121,4 +121,4 @@ const Card = ({ url }) => {
 }
 export default Card
 
-// 
+

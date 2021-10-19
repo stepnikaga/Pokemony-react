@@ -94,22 +94,6 @@
         }
       ],
       "id": 18
-    },
-    {
-      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/9.svg",
-      "species": "blastoise",
-      "height": 16,
-      "weight": 855,
-      "baseExperience": 239,
-      "ability": [
-        {
-          "name": "torrent"
-        },
-        {
-          "name": "rain-dish"
-        }
-      ],
-      "id": 9
     }
   ],
   "arena": []

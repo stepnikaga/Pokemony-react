@@ -4,6 +4,7 @@ import styled from "styled-components";
 import {useHistory, useParams} from 'react-router-dom'
 import {makeStyles} from '@material-ui/core';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import SportsKabaddiIcon from '@mui/icons-material/SportsKabaddi';
 
 import { CallMissedSharp, Style } from '@mui/icons-material';
 import { boxSizing } from '@mui/system';
@@ -44,6 +45,11 @@ const Icon = styled.div`
     margin-bottom: 20px;
     
 `
+const PictureIcon = styled.div`
+    display: flex;
+    flex-direction: column;
+`
+
 const Forms = styled.div`
     display: flex;
     flex-direction: column;
@@ -89,6 +95,7 @@ const PokemonDetails = ({url}) => {
         const history = useHistory()
         const [pokemon, setPokemon] = useState([])
         const [pokemonFavourite, setPokemonFavourite] = useState(null)
+        const [pokemonArena, setPokemonArena] = useState(null)
         const [flag, setFlag] = useState(false)
         const hasAbility = Array.isArray(pokemon?.abilities)
         const { id } = useParams()
@@ -108,7 +115,7 @@ const PokemonDetails = ({url}) => {
     console.log('pokemony', pokemon)
 
     useEffect(() =>{
-        axios.get(`http://localhost:3000/favourites`)
+        axios.get(`http://localhost:3000/favorites`)
             .then(response => {
                 setPokemonFavourite(response.data)
             })
@@ -128,7 +135,7 @@ const PokemonDetails = ({url}) => {
 
     const handleAddFavourite = () => {
         if (flag === false) {
-            axios.post((`http://localhost:3000/favourites`), {
+            axios.post((`http://localhost:3000/favorites`), {
                 sprite: pokemon.sprites.other.dream_world.front_default,
                 species: pokemon.name,
                 height: pokemon.height,
@@ -139,7 +146,7 @@ const PokemonDetails = ({url}) => {
             })
             setFlag(true)
         } else if (flag === true) {
-            axios.delete(`http://localhost:3000/favourites/${pokemon.id}`)
+            axios.delete(`http://localhost:3000/favorites/${pokemon.id}`)
                 .then(response => console.log(response.data))
             setFlag(false)            
         }
@@ -174,7 +181,12 @@ const PokemonDetails = ({url}) => {
             <Wrapper data-name={pokemon.name} >
                 <Image alt={pokemon.name} src={pokemon?.sprites?.other.dream_world.front_default} /> 
                 <Info>
-                    <Icon pokemonFavourite={pokemonFavourite} onClick={() => handleAddFavourite()}><FavoriteIcon /></Icon>
+                    <PictureIcon>
+                        <Icon pokemonFavourite={pokemonFavourite} onClick={() => handleAddFavourite()}><FavoriteIcon /></Icon>
+                    </PictureIcon>
+                    <PictureIcon>
+                        <Icon pokemonFavourite={pokemonFavourite} onClick={() => handleAddFavourite()}><SportsKabaddiIcon /></Icon>
+                    </PictureIcon>
                     <div>
                         <Name>{pokemon.name}</Name>
                     </div>

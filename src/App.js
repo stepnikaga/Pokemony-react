@@ -35,13 +35,7 @@ function App() {
           <Search handleClick={(value) => setSearch(value)}/>      
           <PokemonList 
             setPokem={setPokem} 
-
           />
-          {/* {pokemon2?.results?.map((item) => (
-          <Route path={`/${item.id}`}>
-            <PokemonDetails url={item.url} />
-          </Route>
-        ))} */}
         </div>
 
         </Route>

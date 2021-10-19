@@ -85,7 +85,7 @@ const Data = styled.h5`
   margin-top: 1px;
 `
 
-const PokemonDetails = () => {
+const Arena = () => {
   const history = useHistory()
   const [pokemon, setPokemon] = useState([])
   const [pokemonFavourite, setPokemonFavourite] = useState(null)
@@ -176,5 +176,4 @@ const PokemonDetails = () => {
     </Container>
   )
 }
-export default PokemonDetails
-  /* color: ${({ flag }) => (count % 5 === true && count !=== false ? "green" : "red")}; */
+export default Arena

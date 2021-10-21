@@ -6,16 +6,13 @@ import {makeStyles} from '@material-ui/core';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import SportsKabaddiIcon from '@mui/icons-material/SportsKabaddi';
 
-import { CallMissedSharp, Style } from '@mui/icons-material';
-import { boxSizing } from '@mui/system';
-
 
 const Container = styled.div`
-  display: flex;
+  /* display: flex;
   padding: 20px 40px;
   margin-top: 4vw;
-  margin-left: 40vw;
-
+  margin-left: 40vw; */
+  width: 100vw;
 `
 const Wrapper = styled.div`
   display: flex;

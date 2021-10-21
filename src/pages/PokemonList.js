@@ -8,9 +8,7 @@ import Search from '../components/Search'
 
 
 const Container = styled.div`
-    /* background-color: #80ced6; */
- 
-    padding-top: 0%;
+    width: 100vw;
 `
 const PageButton = styled.button `
     margin: 100px 100px 20px 80px; 
@@ -47,7 +45,7 @@ const MainContainer = styled.div`
     display: flex;
     width: 100vw;
     height: 100vw;
-    justify-content: space-around;
+    justify-content: space-between;
     flex-wrap: wrap;
     margin-left: 5px;
 `
@@ -57,7 +55,8 @@ const Content = styled.div`
     justify-content: space-around;
     align-items: space-between;
     margin: 40px 40px 20px 20px;
-    max-width: 16vw;
+    max-width: 18vw;
+    /* max-height: 20vw; */
     cursor: pointer;
     &:hover {
         box-shadow: 0 3px 3px 5px rgba(0,0,0,0.6);

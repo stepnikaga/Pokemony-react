@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState, useHistory } from 'react';
+import React, { useState, useEffect, useHistory } from 'react';
 import { BrowserRouter as Router, Switch, Route, } from "react-router-dom";
 
 import Navigation from './components/Navigation';
@@ -15,14 +15,14 @@ import PokemonDetails from './components/PokemonDetails';
 
 function App() {
   const [pokem, setPokem] = useState(null)
+  // const [pokemon, setPokemon] = useState(null)
   const [search, setSearch] = useState("")
+  const BASE_URL = `https://pokeapi.co/api/v2/pokemon`
   // const [value, setValue] = useState(2)
   // const history = useHistory()
   console.log('poki',pokem)
 
-  // const handleClick = (pokemonName) => {
-  //   history.push(`/${pokemonName}`)
-  // }
+
   return (
     
     <div className="App">

@@ -3,31 +3,26 @@ import axios from 'axios';
 import styled from "styled-components";
 import {useHistory, useParams} from 'react-router-dom'
 
-
 const Wrapper = styled.div`
-  /* display: flex;
-  flex-wrap: wrap;
-  align-items: space-between;
-  margin: 0 auto;
-  width: 80px;
-   */
+    display: flex;
+    margin-bottom: 0%;
 `
 const CardContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     /* margin: 0 auto; */
-    max-width: 70vw;
-    max-height: 400px;
+    max-width: 140vw;
+    max-height: 500px;
     justify-content: center;
     border: 1px solid;
     /* border-radius: 1.0rem; */
     box-shadow: 0 4px 8px 10px rgba(0, 0, 0, 0.2);
-    background-color: #fefbd8;
+    background-color: #ffef96;
     transition: 0.5s;
 `
 const Image = styled.img`
-    max-width: 60%;
+    max-width: 70%;
 `
 const Info = styled.div`
     margin-top: 20px;
@@ -79,43 +74,43 @@ const Card = ({ url }) => {
     const handleClick = () =>{ history.push(`/${pokemon.id}`)}
 
     return(
-        <>
-        {hasAbility && (
-        <CardContainer onClick={handleClick} data-name={pokemon.name} >
-            <Image alt={pokemon.name} src={pokemon?.sprites?.other.dream_world.front_default} /> 
-            <Info>
-                <div>
-                    <Name>{pokemon.name}</Name>
-                </div>
-                <Abilities>
-                    <Forms>
-                        <Title>Height</Title>
-                        <Data>{pokemon.height}</Data>
-  
-                    </Forms>
-                    <Forms>
-                        <Title>Base experience</Title>
-                        <Data>{pokemon.base_experience}</Data>
+        <Wrapper>
+            {hasAbility && (
+            <CardContainer onClick={handleClick} data-name={pokemon.name} >
+                <Image alt={pokemon.name} src={pokemon?.sprites?.other.dream_world.front_default} /> 
+                <Info>
+                    <div>
+                        <Name>{pokemon.name}</Name>
+                    </div>
+                    <Abilities>
+                        <Forms>
+                            <Title>Height</Title>
+                            <Data>{pokemon.height}</Data>
+    
+                        </Forms>
+                        <Forms>
+                            <Title>Base experience</Title>
+                            <Data>{pokemon.base_experience}</Data>
 
-                    </Forms>
-                </Abilities>
-                <Abilities>
-                    <Forms>
-                        <Title>Weight</Title>
-                        <Data>{pokemon.weight}</Data>
+                        </Forms>
+                    </Abilities>
+                    <Abilities>
+                        <Forms>
+                            <Title>Weight</Title>
+                            <Data>{pokemon.weight}</Data>
 
-                    </Forms>
-                    <Forms>
-                        <Title>Ability</Title>
-                        {pokemon?.abilities.map(({ ability: { name } }) => (
-                        <Data>{name}</Data>
-                        ))}
+                        </Forms>
+                        <Forms>
+                            <Title>Ability</Title>
+                            {pokemon?.abilities.map(({ ability: { name } }) => (
+                            <Data>{name}</Data>
+                            ))}
 
-                    </Forms>
-                </Abilities>
-            </Info> 
-        </CardContainer>)}
-        </>
+                        </Forms>
+                    </Abilities>
+                </Info> 
+            </CardContainer>)}
+        </Wrapper>
     )
     
 }

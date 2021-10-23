@@ -9,14 +9,15 @@ import Search from '../components/Search'
 
 const Container = styled.div`
     width: 100vw;
+    background-color: #ffef96;
 `
 const PageButton = styled.button `
-    margin: 100px 100px 20px 80px; 
+    margin: 40px 40px 0px 40px; 
     display: inline-block;
     height: 50px;
     width: 130px;
     border: none;
-    background-color: #667292;
+    background-color: #4040a1;
     box-shadow: 0 4px 8px 10px rgba(0,0,0,0.2);
     text-align: center;
     cursor: pointer;
@@ -40,30 +41,26 @@ const ContainerButton = styled.div`
     height: 100%;
     justify-content: center;
 `
-
 const MainContainer = styled.div`
     display: flex;
     width: 100vw;
-    height: 100vw;
     justify-content: space-between;
     flex-wrap: wrap;
-    margin-left: 5px;
 `
 const Content = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: space-between;
-    margin: 40px 40px 20px 20px;
-    max-width: 18vw;
-    /* max-height: 20vw; */
+    margin: 20px 30px 30px 20px;
+    box-shadow: 0 1px 6px 12px rgba(0,0,0,0.2);
     cursor: pointer;
     &:hover {
         box-shadow: 0 3px 3px 5px rgba(0,0,0,0.6);
         text-decoration: none;
-        /* background-color: #87bdd8; */
-        /* color: #282C34; */
-        border-radius: 0.3px;
+        /* background-color: #87bdd8;
+        color: #282C34; */
+        border-radius: 0.5px;
     }
 `
 const NEXT = 'NASTĘPNA'

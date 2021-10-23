@@ -5,24 +5,22 @@ import {useHistory, useParams} from 'react-router-dom'
 
 const Wrapper = styled.div`
     display: flex;
-    margin-bottom: 0%;
+    background-color: #ff6f69;
+    height: 400px;
 `
 const CardContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* margin: 0 auto; */
-    max-width: 140vw;
-    max-height: 500px;
+    width: 300px;
     justify-content: center;
-    border: 1px solid;
-    /* border-radius: 1.0rem; */
-    box-shadow: 0 4px 8px 10px rgba(0, 0, 0, 0.2);
-    background-color: #ffef96;
+    border-radius: 0.5rem;
+    /* box-shadow: 0 4px 8px 10px rgba(0, 0, 0, 0.2); */
+    /* background-color: #ffef96; */
     transition: 0.5s;
 `
 const Image = styled.img`
-    max-width: 70%;
+    max-width: 7vw;
 `
 const Info = styled.div`
     margin-top: 20px;
@@ -31,10 +29,13 @@ const Info = styled.div`
     align-items: center;
 `
 const Name = styled.div`
+    display: flex;
+    justify-content: center;
     font-family: "Times New Roman", Times, serif;
-    font-size: 20px;
+    font-size: 25px;
     font-weight: bolder;
     color: red;
+    text-transform: capitalize;
 `
 const Abilities = styled.div`
     display: flex;
@@ -46,10 +47,12 @@ const Forms = styled.div`
     display: flex;
     flex-direction: column;
     margin-top: 10px;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
     margin-left: 20px;
 ` 
 const Data = styled.h5`
+    display: flex;
+    justify-content: center;
     margin-top: 0vw;
     font-size: 8px;
 `

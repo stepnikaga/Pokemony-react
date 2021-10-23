@@ -9,9 +9,10 @@ import styled from 'styled-components';
 const Container = styled.div`
   display: flex;
   justify-content: flex-end;
-  padding-top: 5vw;
-  margin-right: 20px;
-  background-color: #80ced6;
+  padding: 5vw;
+  padding-bottom: 3vw;
+  margin-bottom: 4px;
+  background-color: #ffef96;
 `
 
 const Search = ({ handleClick }) => {

@@ -2,36 +2,29 @@ import React, { useState, useEffect }from 'react'
 import axios from 'axios';
 import styled from "styled-components";
 import {useHistory, useParams} from 'react-router-dom'
-import {makeStyles} from '@material-ui/core';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import SportsKabaddiIcon from '@mui/icons-material/SportsKabaddi';
 
-import { CallMissedSharp, Style } from '@mui/icons-material';
-import { boxSizing } from '@mui/system';
 
 
-const Container = styled.div`
-   display: flex;
-   padding: 20px 40px;
-   margin-top: 4vw;
-   margin-left: 40vw;
-
-`
+// const Container = styled.div`    
+//    display: flex;
+//    /* width: 100vw;
+//    justify-content: space-between;
+//    flex-wrap: wrap; */
+//    /* background-color: #80ced6; */
+// `
 const Wrapper = styled.div`
   display: flex;
   align-content: center;
-  /* margin: 0 auto; */
-  /* padding-top: 1%;
-  margin-top: 5%; */
-  /* margin-bottom: 10%; */
+  margin-top: 8vw;
   flex-direction: column;
   align-Items: center;
   justify-Content: center;
-  padding: 1 rem 0;
-  margin: 0.3rem;
   border: 1px solid;
   border-Radius: 1.5rem;
-  max-width: 300px;
+  width: 20vw;
+  height: 35vw;
   text-Align: center;
   box-Shadow: 0 4px 8px 10px rgba(0, 0, 0, 0.2);
   background-color: #fefbd8;
@@ -44,7 +37,6 @@ const IconFavourite = styled.div`
     color: ${({ pokemonFavourite }) => (pokemonFavourite ? "red" : "gray")};
     margin-bottom: 20px;
 `
-
 const IconAddArena = styled.div`
     color: ${({ pokemonAddArena }) => (pokemonAddArena ? "red" : "gray")};
     margin-bottom: 20px;
@@ -56,8 +48,6 @@ const PictureIcon = styled.div`
 const Forms = styled.div`
     display: flex;
     flex-direction: column;
-    margin-top: 30px;
-    margin-bottom: 20px;
     margin-left: 20px;
 ` 
 const BtnContainer = styled.div`
@@ -70,31 +60,27 @@ const Name = styled.div`
     font-size: 30px;
     font-weight: bolder;
     color: #82b74b;
+    margin-bottom: 8px;
+    text-transform: capitalize
 `
 const Abilities = styled.div`
     display: flex;
     justify-content: space-between;
-    /* margin-top: 0%; */
 `
-
 const Image = styled.img`
-    margin-top: 5px;
-    margin-bottom: 10px;
-    width: 350px;
-    padding: 10px 20px;
+    width: 5vw;
 `
 const Info = styled.div`
     margin-top: 10px;
     font-family: serif;
-    max-height: 80%;
+    max-height: 90%;
     align-items: center;
 `
 const Data = styled.h5`
     margin-top: 1px;
     font-size: 10px;
 `
-
-const PokemonDetails = () => {
+const PokemonDetails = ({url_favourite, url_arena}) => {
     const history = useHistory()
     const [pokemon, setPokemon] = useState([])
     const [pokemonFavourite, setPokemonFavourite] = useState(null)
@@ -107,7 +93,7 @@ const PokemonDetails = () => {
 
     useEffect(() => {
         axios.get(`http://localhost:3000/favorites`).then((response) => {
-            console.log("favourite", response.data);
+            // console.log("favourite", response.data);
             setFavourites(response.data);
             const isPokemonFavourite = response.data
                 .map((item) => item.id)
@@ -117,17 +103,14 @@ const PokemonDetails = () => {
         });
     }, []);
  
-
     useEffect ( async () => {
-        const response = await axios.get(`${BASE_URL}/${id}`)
+        const response = await axios.get(url_favourite ? url_favourite:`${BASE_URL}/${id}`)
         setPokemon(response.data)
         console.log('POK', response.data)
     },[])
 
     useEffect(() => {
-
     },[pokemonFavourite])
-
 
     const handleAddFavourite = () => {
         if (!pokemonFavourite) {
@@ -136,51 +119,60 @@ const PokemonDetails = () => {
             })
             setPokemonFavourite(true)
         } else {
-            axios.delete(`http://localhost:3000/favorites/${id}`)
-                .then(response => console.log(response.data))
-                .catch(() => alert("Ups... nie udało sie usunąć"))
+            axios
+                .delete(`http://localhost:3000/favorites/${id}`)
+                .then(response => console.log(response.data));
             setPokemonFavourite(false)            
         }
     }
+    useEffect(() => {
+        axios.get(`http://localhost:3000/arena`).then((response) => {
+            setPokemonAddArena(response.data.length >= 2 ? false : true)
+            console.log('response.data', response.data)
+        });
+    },[])
 
-    // useEffect(() => {
-    //     pokemonAddArena();
-    //     axios.get(`http://localhost:3000/arena`).then((result) => {
-    //         handleAddArena(result.data.length >=2 ? false : true)
-    //     })
-    // },[])
+    useEffect ( async () => {
+        const response = await axios.get(url_arena ? url_arena:`${BASE_URL}/${id}`)
+        setPokemon(response.data)
+        console.log('POKEarena', response.data)
+    },[])
+    console.log(pokemonAddArena)
 
     const handleAddArena = () => {
-        if(!pokemonAddArena) {
+        if(pokemonAddArena === true){
             axios.post(`http://localhost:3000/arena`, {
                 id: pokemon.id
             })
-            setPokemonAddArena(true)
-        } else if (!pokemonAddArena) {
-            axios.delete(`http://localhost:3000/arena/${pokemon.id}`)
-                .then(response => console.log(response.data))
-            setPokemonAddArena(false)
-        } else {
-            alert('Dodałeś maksymalną ilość pokemonów')
+            .then(() => (pokemonAddArena === false))
         }
     }
-
+    const handleDeleteFromArena = () => {
+        if(pokemonAddArena === false){
+            axios.delete(`http://localhost:3000/arena/${pokemon.id}`)
+                .then(response => console.log(response.data))
+            (false)
+            console.log('poemonaddarena', pokemonAddArena)
+        }
+    }
+    console.log('poemonaddarena', pokemonAddArena)
 
     return(
-        <Container>
+        <>
             {hasAbility && (
             <Wrapper data-name={pokemon.name} >
                 <Image alt={pokemon.name} src={pokemon?.sprites?.other.dream_world.front_default} /> 
                 <Info>
                     <PictureIcon>
-                        <IconFavourite pokemonFavourite={pokemonFavourite} onClick={() => handleAddFavourite()}><FavoriteIcon /></IconFavourite>
+                    <IconAddArena pokemonAddArena={pokemonAddArena} onClick={() => handleAddArena()}><SportsKabaddiIcon /> </IconAddArena>
                     </PictureIcon>
-                    <PictureIcon>
-                        <IconAddArena pokemonAddArena={pokemonAddArena} onClick={() => handleAddArena()}><SportsKabaddiIcon /></IconAddArena>
-                    </PictureIcon>
+                    <button pokemonAddArena={pokemonAddArena} onClick={() => handleDeleteFromArena()}>Usuń z Areny</button>
                     <div>
                         <Name>{pokemon.name}</Name>
                     </div>
+                    <PictureIcon>
+                    <IconFavourite pokemonFavourite={pokemonFavourite} onClick={() => handleAddFavourite()}><FavoriteIcon /></IconFavourite>
+                    </PictureIcon>
                     <Abilities>
                         <Forms>
                             <Title>Height</Title>
@@ -208,7 +200,21 @@ const PokemonDetails = () => {
                     </BtnContainer>
                 </Info>  
             </Wrapper>)}
-        </Container>
+        </>
     )
 }
 export default PokemonDetails
+
+
+        // if(!pokemonAddArena) {
+        //     axios.post(`http://localhost:3000/arena`, {
+        //         id: pokemon.id
+        //     })
+        //     setPokemonAddArena(true)
+        // } else if (!pokemonAddArena) {
+        //     axios.delete(`http://localhost:3000/arena/${pokemon.id}`)
+        //         .then(response => console.log(response.data))
+        //     setPokemonAddArena(false)
+        // } else {
+        //     alert('Dodałeś maksymalną ilość pokemonów')
+        // }

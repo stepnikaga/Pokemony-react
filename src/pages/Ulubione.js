@@ -1,3 +1,4 @@
+import { Container } from "@material-ui/core";
 import { height } from "@mui/system";
 import axios from "axios"
 import React, { useState, useEffect } from "react"
@@ -7,14 +8,19 @@ import Card from '../components/Card'
 import PokemonDetails from "../components/PokemonDetails";
 import PokemonList from "./PokemonList";
 
+const PokeContainer = styled.div`
+    display: flex;
+    width: 100vw;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    background-color: #80ced6;
+`
 const MainContainer = styled.div`
     display: flex;
-    width: 100%;
-    max-height: 50%;
-    justify-content: space-around;
+    justify-content: space-between;
     flex-wrap: wrap;
     margin-left: 5px;
-    /* background-position ; */
+    box-shadow: 0 4px 8px 10px rgba(0,0,0,0.2);
 `
 
 
@@ -31,17 +37,17 @@ function Ulubione(){
         getFavourites();
     }, []);
     console.log("favouritesById", pokemonFavouriteById)
+
     return(
-        <div>
+        <PokeContainer>
             <MainContainer>
                 {pokemonFavouriteById?.map(({ id }) => (
                     <PokemonDetails
-                        pokemonDetails={{ url: `${BASE_URL}/${id}` }}
-                        pokemonFavouriteById={pokemonFavouriteById}
+                        url_favourite={`${BASE_URL}/${id}`}
                     ></PokemonDetails>
                 ))}
             </MainContainer>    
-        </div>
+        </PokeContainer>
     )  
 }
 export default Ulubione

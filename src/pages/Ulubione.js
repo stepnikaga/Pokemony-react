@@ -1,25 +1,22 @@
-import { Container } from "@material-ui/core";
-import { height } from "@mui/system";
 import axios from "axios"
 import React, { useState, useEffect } from "react"
 import styled from 'styled-components';
 
-import Card from '../components/Card'
 import PokemonDetails from "../components/PokemonDetails";
-import PokemonList from "./PokemonList";
 
 const PokeContainer = styled.div`
     display: flex;
     width: 100vw;
     justify-content: space-between;
     flex-wrap: wrap;
-    background-color: #80ced6;
+    background-color: #80ced6;  
 `
 const MainContainer = styled.div`
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    margin-left: 5px;
+    width: 100vw;
+    margin: 30px;
     box-shadow: 0 4px 8px 10px rgba(0,0,0,0.2);
 `
 

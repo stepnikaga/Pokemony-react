@@ -14,13 +14,16 @@ const CardContainer = styled.div`
     align-items: center;
     width: 300px;
     justify-content: center;
-    border-radius: 0.5rem;
+    border-radius: 0.9rem;
     /* box-shadow: 0 4px 8px 10px rgba(0, 0, 0, 0.2); */
     /* background-color: #ffef96; */
     transition: 0.5s;
 `
 const Image = styled.img`
     max-width: 7vw;
+    &:hover {
+        transform: rotate(180deg);
+    }  
 `
 const Info = styled.div`
     margin-top: 20px;
@@ -40,14 +43,11 @@ const Name = styled.div`
 const Abilities = styled.div`
     display: flex;
     justify-content: space-between;
-    /* min-height: 10vw; */
-
 `
 const Forms = styled.div`
     display: flex;
     flex-direction: column;
     margin-top: 10px;
-    /* margin-bottom: 10px; */
     margin-left: 20px;
 ` 
 const Data = styled.h5`

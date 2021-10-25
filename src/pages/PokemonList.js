@@ -1,14 +1,24 @@
-import { height } from "@mui/system";
 import axios from "axios"
 import React, { useState, useEffect } from "react"
 import styled from 'styled-components';
+import Paper from '@mui/material/Paper';
+import InputBase from '@mui/material/InputBase';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import SearchIcon from '@mui/icons-material/Search';
 
 import Card from '../components/Card'
-import Search from '../components/Search'
-
 
 const Container = styled.div`
     width: 100vw;
+    background-color: #ffef96;
+`
+const ContainerSearch = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    padding: 5vw;
+    padding-bottom: 3vw;
+    margin-bottom: 4px;
     background-color: #ffef96;
 `
 const PageButton = styled.button `
@@ -58,8 +68,6 @@ const Content = styled.div`
     &:hover {
         box-shadow: 0 3px 3px 5px rgba(0,0,0,0.6);
         text-decoration: none;
-        /* background-color: #87bdd8;
-        color: #282C34; */
         border-radius: 0.5px;
     }
 `
@@ -70,6 +78,7 @@ function PokemonList(){
     const [pokemon, setPokemon]= useState()
     const [limitValue, setLimitValue] = useState(15)
     const [pageValue, setPageValue] = useState(0)
+    const [searchValue, setSearchValue] = useState('')
     const BASE_URL = `https://pokeapi.co/api/v2/pokemon`
 
     useEffect(() => {
@@ -78,9 +87,9 @@ function PokemonList(){
                 setPokemon(response.data)
                 console.log('dane', response.data)
             })
-
     },[pageValue, limitValue])
     console.log()
+    
 
     if(!pokemon){
         alert('Cierpliwości, za chwilę wyskoczą Pokemony...')
@@ -105,11 +114,36 @@ function PokemonList(){
     }
     return(
         <Container>
+            <ContainerSearch>
+                <Paper
+                    component="form"
+                    sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 400 }}>
+                    <IconButton sx={{ p: '10px' }} aria-label="menu">
+                        <MenuIcon />
+                    </IconButton>
+                    <InputBase 
+                        sx={{ ml: 1, flex: 1 }}
+                        placeholder="Znajdź Pokemona"
+                        inputProps={{ 'aria-label': 'search google maps' }}
+                        onChange={(e) => {setSearchValue(e.target.value)}}
+                    />
+                    <IconButton type="submit" sx={{ p: '10px' }} aria-label="search">
+                        <SearchIcon />
+                    </IconButton>
+                </Paper>
+            </ContainerSearch>
+  
             <ContainerButton>
                 <PageButton onClick={prevPage}>{PREV}</PageButton><PageButton onClick={nextPage}>{NEXT}</PageButton>
             </ContainerButton>
             <MainContainer>
-                {pokemon?.results?.filter((_, index) => index < 15).map(({url}, index) => (
+                {pokemon?.results?.filter((pokemon) => {
+                    if(searchValue ==='') {
+                        return pokemon
+                    } else if (pokemon.name.toLowerCase().includes(searchValue.toLowerCase())){
+                       return pokemon
+                    }})
+                    .map(({url}, index) => (
                     <Content >
                         <Card 
                             url={url} 

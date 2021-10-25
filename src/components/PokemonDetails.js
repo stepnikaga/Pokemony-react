@@ -5,15 +5,6 @@ import {useHistory, useParams} from 'react-router-dom'
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import SportsKabaddiIcon from '@mui/icons-material/SportsKabaddi';
 
-
-
-// const Container = styled.div`    
-//    display: flex;
-//    /* width: 100vw;
-//    justify-content: space-between;
-//    flex-wrap: wrap; */
-//    /* background-color: #80ced6; */
-// `
 const Wrapper = styled.div`
   display: flex;
   align-content: center;
@@ -40,6 +31,9 @@ const IconFavourite = styled.div`
 const IconAddArena = styled.div`
     color: ${({ pokemonAddArena }) => (pokemonAddArena ? "red" : "gray")};
     margin-bottom: 20px;
+    &:hover {
+        transform: rotate(180deg);
+    }
 `
 const PictureIcon = styled.div`
     display: flex;
@@ -69,6 +63,9 @@ const Abilities = styled.div`
 `
 const Image = styled.img`
     width: 5vw;
+    &:hover {
+        transform: rotate(180deg);
+    }
 `
 const Info = styled.div`
     margin-top: 10px;
@@ -151,12 +148,10 @@ const PokemonDetails = ({url_favourite, url_arena}) => {
         if(pokemonAddArena === false){
             axios.delete(`http://localhost:3000/arena/${pokemon.id}`)
                 .then(response => console.log(response.data))
-            (false)
             console.log('poemonaddarena', pokemonAddArena)
         }
     }
-    console.log('poemonaddarena', pokemonAddArena)
-
+ 
     return(
         <>
             {hasAbility && (
@@ -204,17 +199,3 @@ const PokemonDetails = ({url_favourite, url_arena}) => {
     )
 }
 export default PokemonDetails
-
-
-        // if(!pokemonAddArena) {
-        //     axios.post(`http://localhost:3000/arena`, {
-        //         id: pokemon.id
-        //     })
-        //     setPokemonAddArena(true)
-        // } else if (!pokemonAddArena) {
-        //     axios.delete(`http://localhost:3000/arena/${pokemon.id}`)
-        //         .then(response => console.log(response.data))
-        //     setPokemonAddArena(false)
-        // } else {
-        //     alert('Dodałeś maksymalną ilość pokemonów')
-        // }

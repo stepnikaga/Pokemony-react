@@ -1,9 +1,6 @@
 import React, { useState, useEffect }from 'react'
 import axios from 'axios';
 import styled from "styled-components";
-import {useHistory, useParams} from 'react-router-dom'
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import SportsKabaddiIcon from '@mui/icons-material/SportsKabaddi';
 
 import PokemonDetails from "../components/PokemonDetails";
 
@@ -41,11 +38,20 @@ const SecondPosition = styled.div`
   border: 1px solid;
   border-Radius: 1.5rem;
 `
-const Card = styled.div`
+const CardLeft = styled.div`
   display: flex;
-
-
+  justify-content: space-around;
+  width: auto;
+  height: auto;
 `
+const CardRight = styled.div`
+  display: flex;
+  justify-content: space-around;
+  width: auto;
+  height: auto;
+`
+
+
 const Arena = () => {
   const [pokemonAddArenaById, setPokemonAddArenaById] = useState([])
   const BASE_URL = `https://pokeapi.co/api/v2/pokemon`;
@@ -63,24 +69,23 @@ const Arena = () => {
   return(
     <ArenaContainer>
       <FirstPosition>
-        <Card> 
-          {pokemonAddArenaById?.map((item) => (
+        <CardLeft> 
+          {pokemonAddArenaById?.map(({id}) => (
               <PokemonDetails
-                URL_ARENA={`${BASE_URL}/${item.id}`}
+                URL_ARENA={`${BASE_URL}/${id}`}
               ></PokemonDetails>
           ))}
-        </Card>
+        </CardLeft>
       </FirstPosition>
       <Fight variant="contained">FIGHT</Fight>
       <SecondPosition>
-        <Card> 
-            {pokemonAddArenaById?.map(({id}) => (
-                <PokemonDetails
-                  url_arena={`${BASE_URL}/${id}`}
-                ></PokemonDetails>
-            ))}
-          </Card>
-
+        <CardRight> 
+          {pokemonAddArenaById?.map(({id}) => (
+            <PokemonDetails
+              url_arena={`${BASE_URL}/${id}`}
+            ></PokemonDetails>
+          ))}
+        </CardRight>
       </SecondPosition>
     </ArenaContainer>
   )  
